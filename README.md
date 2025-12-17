@@ -48,14 +48,21 @@ uv run mypy src/
 uv run ruff format src/
 ```
 
-## Estrutura do Projeto
+## Funcionalidades Atuais
 
+### Utilitários de S3
+
+O módulo `automation_aws_utils.s3_utils` centraliza operações comuns com o Amazon S3
+e expõe funções com tolerância a falhas típicas (timeouts, `AccessDenied`, `NoSuchKey`):
+
+```python
+from automation_aws_utils import s3_utils
+
+local_path = s3_utils.download_file_from_s3("meu-bucket", "dados/arquivo.csv", "/tmp/arquivo.csv")
+s3_utils.upload_file_to_s3(local_path, "meu-bucket-processado", "outputs/arquivo.csv")
+metadata = s3_utils.get_object_metadata("meu-bucket", "dados/arquivo.csv")
 ```
-automation-aws-utils/
-├── src/
-│   └── automation_aws_utils/
-│       ├── __init__.py
-│       └── py.typed
-├── pyproject.toml
-└── README.md
-```
+
+As funções disparam exceções específicas (`S3FileNotFoundError`, `S3AccessDeniedError`,
+`S3DownloadError`, `S3UploadError`) para que o chamador possa decidir se deve agendar
+um retry ou tratar como falha definitiva.
