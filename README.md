@@ -66,3 +66,19 @@ metadata = s3_utils.get_object_metadata("meu-bucket", "dados/arquivo.csv")
 As funções disparam exceções específicas (`S3FileNotFoundError`, `S3AccessDeniedError`,
 `S3DownloadError`, `S3UploadError`) para que o chamador possa decidir se deve agendar
 um retry ou tratar como falha definitiva.
+
+### AWS Secrets Manager
+
+O módulo `automation_aws_utils.secrets_manager` encapsula o fluxo recorrente de buscar
+segredos (como credenciais do Google) e salvá-los no disco com permissões restritas:
+
+```python
+from automation_aws_utils import secrets_manager
+
+google_creds = secrets_manager.fetch_secret_json("acesso-google")
+secrets_manager.write_secret_to_file("acesso-google", "/tmp/google.json")
+```
+
+Exceções específicas (`SecretNotFoundError`, `SecretAccessDeniedError`,
+`SecretDecryptionError`) ajudam o serviço a decidir se deve reprocessar o evento ou falhar
+definitivamente.
