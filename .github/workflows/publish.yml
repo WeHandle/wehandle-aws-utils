@@ -26,10 +26,3 @@ jobs:
       - run: uv run pytest
 
       - run: uv build
-
-      - name: Publish to GitHub Packages
-        if: github.event_name == 'release'
-        run: uv publish --index github
-        env:
-          UV_PUBLISH_USERNAME: ${{ github.actor }}
-          UV_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
