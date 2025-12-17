@@ -33,8 +33,3 @@ dev = [
     "pytest>=9.0.2",
     "ruff>=0.14.9",
 ]
-
-[[tool.uv.index]]
-name = "github"
-url = "https://pypi.pkg.github.com/WeHandle/simple"
-publish-url = "https://pypi.pkg.github.com/WeHandle/"
