@@ -82,3 +82,18 @@ secrets_manager.write_secret_to_file("acesso-google", "/tmp/google.json")
 Exceções específicas (`SecretNotFoundError`, `SecretAccessDeniedError`,
 `SecretDecryptionError`) ajudam o serviço a decidir se deve reprocessar o evento ou falhar
 definitivamente.
+
+## Publicação do Pacote
+
+A action `.github/workflows/publish.yml` executa lint (`ruff`), testes (`pytest`), build e
+publicação do pacote sempre que um release é publicado ou manualmente via `workflow_dispatch`.
+Antes de disparar releases, configure os seguintes secrets no repositório/ambiente:
+
+- `WEHANDLE_PYPI_URL`: Endpoint do registry privado da organização (ex.: GitHub Packages).
+- `WEHANDLE_PYPI_TOKEN`: Token com permissão de publicação no registry (scope `packages:write`).
+
+Fluxo sugerido para lançar uma nova versão interna:
+
+1. Atualize `pyproject.toml` / `__version__`.
+2. Crie um release tagueado (ex.: `v0.2.0`) pelo GitHub.
+3. A action será executada automaticamente e publicará o pacote usando as credenciais acima.

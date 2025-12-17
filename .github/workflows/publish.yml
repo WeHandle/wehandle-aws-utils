@@ -1,0 +1,35 @@
+name: Publish Package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - run: uv sync
+
+      - run: uv run ruff check .
+
+      - run: uv run pytest
+
+      - run: uv build
+
+      - name: Publish to GitHub Packages
+        if: github.event_name == 'release'
+        run: uv publish --index github
+        env:
+          UV_PUBLISH_USERNAME: ${{ github.actor }}
+          UV_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
