@@ -21,6 +21,17 @@ Para uso em produção:
 uv pip install .
 ```
 
+## Uso em outros projetos
+
+A biblioteca ainda não é distribuída em um registry PyPI. Enquanto isso, consuma a versão
+tagueada diretamente do Git utilizando o `uv`:
+
+```bash
+uv add "automation-aws-utils @ git+ssh://git@github.com/WeHandle/automation-aws-utils.git@v0.1.0"
+```
+
+> Substitua `v0.1.0` pela tag desejada quando novas versões forem criadas.
+
 ## Desenvolvimento
 
 ### Ferramentas
@@ -86,14 +97,10 @@ definitivamente.
 ## Publicação do Pacote
 
 A action `.github/workflows/publish.yml` executa lint (`ruff`), testes (`pytest`), build e
-publicação do pacote sempre que um release é publicado ou manualmente via `workflow_dispatch`.
-Antes de disparar releases, configure os seguintes secrets no repositório/ambiente:
-
-- `WEHANDLE_PYPI_URL`: Endpoint do registry privado da organização (ex.: GitHub Packages).
-- `WEHANDLE_PYPI_TOKEN`: Token com permissão de publicação no registry (scope `packages:write`).
+publicação do pacote sempre que um release é publicado ou manualmente.
 
 Fluxo sugerido para lançar uma nova versão interna:
 
 1. Atualize `pyproject.toml` / `__version__`.
 2. Crie um release tagueado (ex.: `v0.2.0`) pelo GitHub.
-3. A action será executada automaticamente e publicará o pacote usando as credenciais acima.
+3. A action será executada automaticamente.
