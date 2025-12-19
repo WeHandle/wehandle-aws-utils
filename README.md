@@ -1,4 +1,4 @@
-# automation-aws-utils
+# aws-utils
 
 Biblioteca Python interna para utilitários relacionados a AWS do time de automação.
 
@@ -27,7 +27,7 @@ A biblioteca ainda não é distribuída em um registry PyPI. Enquanto isso, cons
 tagueada diretamente do Git utilizando o `uv`:
 
 ```bash
-uv add "automation-aws-utils @ git+ssh://git@github.com/WeHandle/automation-aws-utils.git@v0.1.0"
+uv add "aws-utils @ git+ssh://git@github.com/WeHandle/aws-utils.git@v0.1.0"
 ```
 
 > Substitua `v0.1.0` pela tag desejada quando novas versões forem criadas.

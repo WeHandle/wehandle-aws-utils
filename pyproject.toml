@@ -1,5 +1,5 @@
 [project]
-name = "automation-aws-utils"
+name = "aws-utils"
 version = "0.1.0"
 description = "Biblioteca para utilitários relacionados a AWS do time de automação"
 readme = "README.md"

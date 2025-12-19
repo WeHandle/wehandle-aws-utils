@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from botocore.exceptions import ClientError
 
-from automation_aws_utils import secrets_manager
+from aws_utils import secrets_manager
 
 
 def make_client_error(code: str) -> ClientError:

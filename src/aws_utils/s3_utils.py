@@ -1,9 +1,9 @@
 """High level helpers around boto3's S3 client.
 
-The goal of this module is to centralize the resilient download/upload logic that is
-duplicated across different automation services.  The helpers wrap boto3 with sensible
-defaults (timeouts, retries, multipart config) and convert common failure cases into
-domain specific exceptions so that the caller can decide when an operation is retryable.
+The goal of this module is to centralize the resilient download/upload logic.
+The helpers wrap boto3 with sensible defaults (timeouts, retries, multipart config) 
+and convert common failure cases into domain specific exceptions so that the 
+caller can decide when an operation is retryable.
 """
 
 from __future__ import annotations
