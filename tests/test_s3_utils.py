@@ -7,7 +7,7 @@ from unittest.mock import Mock
 import pytest
 from botocore.exceptions import ClientError
 
-from aws_utils.s3 import utils as s3_utils
+from wehandle_aws_utils.s3 import utils as s3_utils
 
 
 class DummyClient:

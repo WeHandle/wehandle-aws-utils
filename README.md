@@ -1,4 +1,4 @@
-# aws-utils
+# wehandle-aws-utils
 
 Biblioteca Python interna para utilitários relacionados a AWS do time de automação.
 
@@ -27,7 +27,7 @@ A biblioteca ainda não é distribuída em um registry PyPI. Enquanto isso, cons
 tagueada diretamente do Git utilizando o `uv`:
 
 ```bash
-uv add "aws-utils @ git+ssh://git@github.com/WeHandle/aws-utils.git@v0.1.0"
+uv add "wehandle-aws-utils @ git+ssh://git@github.com/WeHandle/wehandle-aws-utils.git@v0.1.0"
 ```
 
 > Substitua `v0.1.0` pela tag desejada quando novas versões forem criadas.
@@ -63,11 +63,11 @@ uv run ruff format src/
 
 ### Utilitários de S3
 
-O módulo `aws_utils.s3.utils` centraliza operações comuns com o Amazon S3
+O módulo `wehandle_aws_utils.s3.utils` centraliza operações comuns com o Amazon S3
 e expõe funções com tolerância a falhas típicas (timeouts, `AccessDenied`, `NoSuchKey`):
 
 ```python
-from aws_utils.s3 import utils as s3_utils
+from wehandle_aws_utils.s3 import utils as s3_utils
 
 local_path = s3_utils.download_file_from_s3("meu-bucket", "dados/arquivo.csv", "/tmp/arquivo.csv")
 s3_utils.upload_file_to_s3(local_path, "meu-bucket-processado", "outputs/arquivo.csv")
@@ -80,11 +80,11 @@ um retry ou tratar como falha definitiva.
 
 ### AWS Secrets Manager
 
-O módulo `aws_utils.secrets_manager.utils` encapsula o fluxo recorrente de buscar
+O módulo `wehandle_aws_utils.secrets_manager.utils` encapsula o fluxo recorrente de buscar
 segredos (como credenciais do Google) e salvá-los no disco com permissões restritas:
 
 ```python
-from aws_utils.secrets_manager import utils as secrets_manager
+from wehandle_aws_utils.secrets_manager import utils as secrets_manager
 
 google_creds = secrets_manager.fetch_secret_json("acesso-google")
 secrets_manager.write_secret_to_file("acesso-google", "/tmp/google.json")

@@ -99,7 +99,7 @@ class TransferSettings:
         )
 
 
-_LOGGER = logging.getLogger('automation_aws_utils.s3')
+_LOGGER = logging.getLogger('wehandle_aws_utils.s3')
 _DEFAULT_BOTO_CONFIG = S3Config().to_botocore_config()
 _DEFAULT_TRANSFER_CONFIG = TransferSettings().to_transfer_config()
 
