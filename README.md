@@ -63,11 +63,11 @@ uv run ruff format src/
 
 ### Utilitários de S3
 
-O módulo `automation_aws_utils.s3_utils` centraliza operações comuns com o Amazon S3
+O módulo `aws_utils.s3.utils` centraliza operações comuns com o Amazon S3
 e expõe funções com tolerância a falhas típicas (timeouts, `AccessDenied`, `NoSuchKey`):
 
 ```python
-from automation_aws_utils import s3_utils
+from aws_utils.s3 import utils as s3_utils
 
 local_path = s3_utils.download_file_from_s3("meu-bucket", "dados/arquivo.csv", "/tmp/arquivo.csv")
 s3_utils.upload_file_to_s3(local_path, "meu-bucket-processado", "outputs/arquivo.csv")
@@ -80,19 +80,19 @@ um retry ou tratar como falha definitiva.
 
 ### AWS Secrets Manager
 
-O módulo `automation_aws_utils.secrets_manager` encapsula o fluxo recorrente de buscar
+O módulo `aws_utils.secrets_manager.utils` encapsula o fluxo recorrente de buscar
 segredos (como credenciais do Google) e salvá-los no disco com permissões restritas:
 
 ```python
-from automation_aws_utils import secrets_manager
+from aws_utils.secrets_manager import utils as secrets_manager
 
 google_creds = secrets_manager.fetch_secret_json("acesso-google")
 secrets_manager.write_secret_to_file("acesso-google", "/tmp/google.json")
 ```
 
 Exceções específicas (`SecretNotFoundError`, `SecretAccessDeniedError`,
-`SecretDecryptionError`) ajudam o serviço a decidir se deve reprocessar o evento ou falhar
-definitivamente.
+`SecretDecryptionError`, `SecretRetrievalError`) ajudam o serviço a decidir se deve
+reprocessar o evento ou falhar definitivamente.
 
 ## Publicação do Pacote
 
