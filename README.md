@@ -1,6 +1,6 @@
 # wehandle-aws-utils
 
-Biblioteca Python interna para utilitários relacionados a AWS do time de automação.
+Biblioteca Python para utilitários relacionados a AWS do time wehandle.
 
 ## Requisitos
 
@@ -23,14 +23,13 @@ uv pip install .
 
 ## Uso em outros projetos
 
-A biblioteca ainda não é distribuída em um registry PyPI. Enquanto isso, consuma a versão
-tagueada diretamente do Git utilizando o `uv`:
+A biblioteca é distribuída em um registry PyPI. 
 
 ```bash
-uv add "wehandle-aws-utils @ git+ssh://git@github.com/WeHandle/wehandle-aws-utils.git@v0.1.0"
+uv add "wehandle-aws-utils@v0.1.1"
 ```
 
-> Substitua `v0.1.0` pela tag desejada quando novas versões forem criadas.
+> Substitua `v0.1.1` pela tag desejada quando novas versões forem criadas.
 
 ## Desenvolvimento
 
