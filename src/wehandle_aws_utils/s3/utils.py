@@ -65,7 +65,7 @@ class S3UploadError(S3Error):
 class S3Config:
     """Settings for creating boto3 S3 clients."""
 
-    max_attempts: int = 10
+    max_attempts: int = 1
     connect_timeout: int = 10
     read_timeout: int = 120
     tcp_keepalive: bool = True
